@@ -33,6 +33,6 @@ class GolfcoursesController < ApplicationController
    private
   # ストロングパラメータ
   def golfcourse_params
-    params.require(:golfcourse).permit(:title, :body)
+    params.require(:golfcourse).permit(:title, :body, :image)
   end
 end
