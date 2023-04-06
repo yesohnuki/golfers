@@ -4,12 +4,12 @@ class GolfcoursesController < ApplicationController
   end
 
   def create
-    # データを受け取り新規登録するためのインスタンス作成
-    golfcourse = Golfcourse.new(golfcourse_params)
-    # データをデータベースに保存するためのsaveメソッド実行
-    golfcourse.save
-    # 詳細画面へリダイレクト
-    redirect_to golfcourse_path(golfcourse.id)
+    @golfcourse = Golfcourse.new(golfcourse_params)  # データを受け取り新規登録するためのインスタンス作成
+    if @golfcourse.save  # データをデータベースに保存するためのsaveメソッド実行
+      redirect_to golfcourse_path(@golfcourse.id)  # 詳細画面へリダイレクト
+    else
+      render :new
+    end
   end
 
   def index
@@ -28,6 +28,12 @@ class GolfcoursesController < ApplicationController
     golfcourse = Golfcourse.find(params[:id])
     golfcourse.update(golfcourse_params)
     redirect_to golfcourse_path(golfcourse.id)
+  end
+
+  def destroy
+    golfcourse = Golfcourse.find(params[:id])  # データ（レコード）を1件取得
+    golfcourse.destroy  # データ（レコード）を削除
+    redirect_to '/golfcourses'  # 投稿一覧画面へリダイレクト
   end
 
    private

@@ -3,11 +3,10 @@
 
 <h2>本文</h2>
 <p><%= @golfcourse.body %></p>
+
 <h2>画像</h2>
-<% if @golfcourse.image.attached? %>
-  <%= image_tag @golfcourse.image, size: "300x300" %>
-<% else %>
-  <%= image_tag 'golfcourse1', size: "300x300" %>
-<% end %>
+<%= image_tag @golfcourse.image, size: "300x300" %>
 
 <%= link_to "編集", edit_golfcourse_path(@golfcourse.id) %>
+
+<%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

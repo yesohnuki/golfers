@@ -1,4 +1,13 @@
 <h1>新規投稿</h1>
+<% if @golfcourse.errors.any? %>
+  <%= @golfcourse.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @golfcourse.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @golfcourse do |f| %>
   <h4>タイトル</h4>
   <%= f.text_field :title %>
