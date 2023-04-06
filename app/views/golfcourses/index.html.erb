@@ -3,6 +3,9 @@
 <% @golfcourses.each do |golfcourse| %>
 
   <p>タイトル</p>
-  <span><%= golfcourse.title %></span>
+
+  <span>
+    <%= link_to golfcourse.title, golfcourse_path(golfcourse.id) %>
+  </span>
 
 <% end %>

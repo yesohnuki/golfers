@@ -8,8 +8,8 @@ class GolfcoursesController < ApplicationController
     golfcourse = Golfcourse.new(golfcourse_params)
     # データをデータベースに保存するためのsaveメソッド実行
     golfcourse.save
-    # トップ画面へリダイレクト
-    redirect_to '/top'
+    # 詳細画面へリダイレクト
+    redirect_to golfcourse_path(golfcourse.id)
   end
 
   def index
