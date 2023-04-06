@@ -21,6 +21,13 @@ class GolfcoursesController < ApplicationController
   end
 
   def edit
+    @golfcourse = Golfcourse.find(params[:id])
+  end
+
+  def update
+    golfcourse = Golfcourse.find(params[:id])
+    golfcourse.update(golfcourse_params)
+    redirect_to golfcourse_path(golfcourse.id)
   end
 
    private
