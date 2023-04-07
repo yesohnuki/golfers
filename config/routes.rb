@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  get '/top' => 'homes#top'
+  devise_for :users
+  root to: 'homes#top'
   resources :golfcourses
 end
