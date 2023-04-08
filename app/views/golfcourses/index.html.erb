@@ -2,6 +2,9 @@
 
 <% @golfcourses.each do |golfcourse| %>
 <div>
+
+  <p>投稿ユーザー画像：<%= image_tag golfcourse.user.get_profile_image(100,100) %></p>
+
   <p>ユーザーネーム：<%= golfcourse.user.name %></p>
 
   <p>タイトル：<%= link_to golfcourse.title, golfcourse_path(golfcourse.id) %></p>
