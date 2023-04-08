@@ -1,2 +1,19 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<!-- ユーザーの詳細 -->
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+</div>
+
+<!-- ユーザーの投稿一覧 -->
+
+<% @golfcourses.each do |golfcourse| %>
+<div>
+  <%= link_to golfcourse_path(golfcourse.id) do %>
+    <%= image_tag golfcourse.get_image %>
+  <% end %>
+  <p>ユーザー画像：<%= image_tag golfcourse.user.get_profile_image(100,100) %></p>
+  <p>タイトル：<%= link_to golfcourse.title, golfcourse_path(golfcourse.id) %></p>
+  <p>本文：<%= golfcourse.body %></p>
+  <p>ユーザーネーム：<%= golfcourse.user.name %></p>
+</div>
+<% end %>
