@@ -9,9 +9,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
+    user = User.find(params[:id])
+    user.update(user_params)
     redirect_to user_path(user.id)#ユーザーの詳細ページへのパス
+  end
+
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(user), notice: "ゲストユーザーとしてログインしました。"
   end
 
 
