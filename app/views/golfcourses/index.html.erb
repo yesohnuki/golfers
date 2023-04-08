@@ -1,23 +1,14 @@
 <h1>投稿一覧</h1>
 
 <% @golfcourses.each do |golfcourse| %>
-
-  <p>タイトル</p>
-
-  <span>
-    <%= link_to golfcourse.title, golfcourse_path(golfcourse.id) %>
-  </span>
-
-  <p>画像</p>
-  <%= image_tag golfcourse.image, size: "200x200" %>
-
-<% end %>
-
 <div>
-  <%= image_tag golfcourse.get_image %>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>タイトル：<%= post_image.shop_name %></p>
-  <p>説明：<%= post_image.caption %></p>
-  <p>ユーザーネーム：<%= post_image.user.name %></p>
+  <p>ユーザーネーム：<%= golfcourse.user.name %></p>
+
+  <p>タイトル：<%= link_to golfcourse.title, golfcourse_path(golfcourse.id) %></p>
+
+  <p><%= image_tag golfcourse.image, size: "80x80" %></p>
+
+  <p>本文：<%= golfcourse.body %></p>
 </div>
 <% end %>
+
