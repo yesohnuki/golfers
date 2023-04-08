@@ -4,11 +4,12 @@ class GolfcoursesController < ApplicationController
   end
 
   def create
-    golfcourse = Golfcourse.new(golfcourse_params)  # データを受け取り新規登録するためのインスタンス作成
-    golfcourse.save  # データをデータベースに保存するためのsaveメソッド実行
+    @golfcourse = Golfcourse.new(golfcourse_params)  # データを受け取り新規登録するためのインスタンス作成
+    @golfcourse.user_id = current_user.id
+    @golfcourse.save  # データをデータベースに保存するためのsaveメソッド実行
     # 3. フラッシュメッセージを定義し、詳細画面へリダイレクト
     flash[:notice] = "投稿が成功しました"
-    redirect_to golfcourse_path(golfcourse.id)
+    redirect_to golfcourse_path(@golfcourse.id)
   end
 
   def index
@@ -35,7 +36,7 @@ class GolfcoursesController < ApplicationController
     redirect_to '/golfcourses'  # 投稿一覧画面へリダイレクト
   end
 
-   private
+  private
   # ストロングパラメータ
   def golfcourse_params
     params.require(:golfcourse).permit(:title, :body, :image)

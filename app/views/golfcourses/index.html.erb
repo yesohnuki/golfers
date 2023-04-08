@@ -12,3 +12,12 @@
   <%= image_tag golfcourse.image, size: "200x200" %>
 
 <% end %>
+
+<div>
+  <%= image_tag golfcourse.get_image %>
+  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>タイトル：<%= post_image.shop_name %></p>
+  <p>説明：<%= post_image.caption %></p>
+  <p>ユーザーネーム：<%= post_image.user.name %></p>
+</div>
+<% end %>
