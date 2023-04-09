@@ -17,7 +17,7 @@ class GolfcoursesController < ApplicationController
   end
 
   def index
-    @golfcourses = Golfcourse.all
+    @golfcourses = Golfcourse.page(params[:page])
   end
 
   def show

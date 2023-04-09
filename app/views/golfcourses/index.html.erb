@@ -20,4 +20,5 @@
   <p><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id) %></p>
 </div>
 <% end %>
+<%= paginate @golfcourses %>
 
