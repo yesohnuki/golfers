@@ -17,5 +17,14 @@
   <p>本文：<%= golfcourse.body %></p>
   <p>ユーザーネーム：<%= golfcourse.user.name %></p>
   <p><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id) %></p>
+  <td>フォロー数：<%= golfcourse.user.followings.count %></td>
+  <td>フォロワー数：<%= golfcourse.user.followers.count %></td>
+  <td>
+    <% if current_user.following?(golfcourse.user) %>
+      <%= link_to "フォロー外す", user_relationships_path(golfcourse.user.id), method: :delete %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(golfcourse.user.id), method: :post %>
+    <% end %>
+  </td>
 </div>
 <% end %>
