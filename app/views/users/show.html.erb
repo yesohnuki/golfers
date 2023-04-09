@@ -16,5 +16,6 @@
   <p>タイトル：<%= link_to golfcourse.title, golfcourse_path(golfcourse.id) %></p>
   <p>本文：<%= golfcourse.body %></p>
   <p>ユーザーネーム：<%= golfcourse.user.name %></p>
+  <p><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id) %></p>
 </div>
 <% end %>

@@ -12,6 +12,8 @@
   <p><%= image_tag golfcourse.image, size: "80x80" %></p>
 
   <p>本文：<%= golfcourse.body %></p>
+
+  <p><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id) %></p>
 </div>
 <% end %>
 

@@ -18,6 +18,7 @@ class GolfcoursesController < ApplicationController
 
   def show
     @golfcourse = Golfcourse.find(params[:id])
+    @post_comment = Golfcourse.new
   end
 
   def edit
