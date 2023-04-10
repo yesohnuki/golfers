@@ -16,19 +16,31 @@
 
 
 
-<% @golfcourses.each do |golfcourse| %>
+
 <div>
-  <td>フォロー数：<%= golfcourse.user.followings.count %></td>
-  <td>フォロワー数：<%= golfcourse.user.followers.count %></td>
   <td>
-    <% if current_user.following?(golfcourse.user) %>
-      <%= link_to "フォロー外す", user_relationships_path(golfcourse.user.id), method: :delete %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(golfcourse.user.id), method: :post %>
+    フォロー数：
+    <%= link_to user_followings_path(user_id: @user.id) do %>
+      <%= @user.followings.count %>
+    <% end %>
+  </td>
+  <td>
+    フォロワー数：
+    <%= link_to user_followers_path(user_id: @user.id) do %>
+      <%= @user.followers.count %>
+    <% end %>
+  </td>
+  <td>
+    <% unless current_user == @user %>
+      <% if current_user.following?(@user) %>
+        <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete %>
+      <% else %>
+        <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
+      <% end %>
     <% end %>
   </td>
 </div>
-<% end %>
+
 
 
 <!-- ユーザーの投稿一覧 -->
