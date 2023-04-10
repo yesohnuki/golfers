@@ -9,14 +9,6 @@
 
 <% @golfcourses.each do |golfcourse| %>
 <div>
-  <%= link_to golfcourse_path(golfcourse.id) do %>
-    <%= image_tag golfcourse.get_image %>
-  <% end %>
-  <p>ユーザー画像：<%= image_tag golfcourse.user.get_profile_image(100,100) %></p>
-  <p>タイトル：<%= link_to golfcourse.title, golfcourse_path(golfcourse.id) %></p>
-  <p>本文：<%= golfcourse.body %></p>
-  <p>ユーザーネーム：<%= golfcourse.user.name %></p>
-  <p><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id) %></p>
   <td>フォロー数：<%= golfcourse.user.followings.count %></td>
   <td>フォロワー数：<%= golfcourse.user.followers.count %></td>
   <td>
@@ -28,3 +20,34 @@
   </td>
 </div>
 <% end %>
+
+
+
+
+<div class="card-list-container py-5">
+  <% @golfcourses.each do |golfcourse| %>
+  <div class="card w-50 mx-auto mt-4 shadow-lg">
+    <%= link_to golfcourse_path(golfcourse.id) do %>
+      <%= image_tag golfcourse.get_image, class:"card-img-top"; %>
+    <% end %>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-2">
+          <%= image_tag golfcourse.user.get_profile_image(100,100) %>, class:"mt-3 rounded-circle"; %>
+        </div>
+        <div class="col-10">
+          <p class="card-title">
+            <%= link_to(golfcourse_path(golfcourse.id), class:"text-dark") do %>
+              <strong><i class="far fa-flag"></i><span> <%= golfcourse.title %></span></strong>
+            <% end %>
+          </p>
+          <p class="card-text">説明：<%= golfcourse.body %></p>
+          <span><i class="fas fa-user"></i> By <%= golfcourse.user.name %> ｜ </span>
+          <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <%#= paginate @golfcourse %>
+</div>
