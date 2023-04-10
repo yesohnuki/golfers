@@ -1,19 +1,19 @@
-<%= image_tag @golfcourse.get_image %>
-<h2>タイトル</h2>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+      <h5 class="text-dark bg-light p-4 mb-0">golfcourse詳細</h5>
+      <div class="form-body p-4">
+
+
+
+<%= image_tag @golfcourse.get_image, class: 'img-fluid' %>
+<h2>ゴルフ場</h2>
 <p><%= @golfcourse.title %></p>
 
-<h2>本文</h2>
+<h2>説明</h2>
 <p><%= @golfcourse.body %></p>
-
-<p>投稿ユーザー画像：<%= image_tag @golfcourse.user.get_profile_image(100,100) %></p>
-
-<p>投稿日：<%= @golfcourse.created_at.strftime('%Y/%m/%d') %></p>
-
-<%= link_to "編集", edit_golfcourse_path(@golfcourse.id) %>
-
-<% if @golfcourse.user == current_user %>
-  <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+<p><%= image_tag @golfcourse.user.get_profile_image(100,100) %></p>
+<p><%= @golfcourse.user.name %></p>
 
 <% if @golfcourse.favorited_by?(current_user) %>
     <p>
@@ -46,3 +46,9 @@
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+<p>投稿日：<%= @golfcourse.created_at.strftime('%Y/%m/%d') %></p>
+<%= link_to "編集", edit_golfcourse_path(@golfcourse.id) %>
+
+<% if @golfcourse.user == current_user %>
+  <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>
