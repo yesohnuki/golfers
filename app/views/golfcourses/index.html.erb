@@ -19,8 +19,8 @@
               <strong><i class="far fa-flag"></i><span> <%= golfcourse.title %></span></strong>
             <% end %>
           </p>
-          <p class="card-text">説明：<%= golfcourse.body %></p>
-          <span><i class="fas fa-user"></i> By <%= golfcourse.user.name %> ｜ </span>
+          <p class="card-text"><%= golfcourse.body %></p>
+          <span><i class="fas fa-user"></i><%= golfcourse.user.name %> ｜ </span>
           <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %> ｜ </span>
           <span>
             <% if golfcourse.favorited_by?(current_user) %>
