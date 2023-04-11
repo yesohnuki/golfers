@@ -4,50 +4,47 @@
       <h5 class="text-dark bg-light p-4 mb-0">ゴルフコース詳細</h5>
       <div class="form-body p-4">
 
+      <%= image_tag @golfcourse.get_image, class: 'img-fluid' %>
 
+      <h5><%= @golfcourse.title %></h5>
+      <p><%= @golfcourse.body %></p>
+      <% if @golfcourse.favorited_by?(current_user) %>
+        <p>
+          <%= link_to golfcourse_favorites_path(@golfcourse), method: :delete do %>
+            ♥<%= @golfcourse.favorites.count %> いいね
+          <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to golfcourse_favorites_path(@golfcourse), method: :post do %>
+            ♡<%= @golfcourse.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% end %>
+      <p><%= image_tag @golfcourse.user.get_profile_image(100,100) %></p>
+      <p><%= @golfcourse.user.name %></p>
 
-<%= image_tag @golfcourse.get_image, class: 'img-fluid' %>
-
-<h5><%= @golfcourse.title %></h5>
-<p><%= @golfcourse.body %></p>
-<p><%= image_tag @golfcourse.user.get_profile_image(100,100) %></p>
-<p><%= @golfcourse.user.name %></p>
-
-<% if @golfcourse.favorited_by?(current_user) %>
-  <p>
-    <%= link_to golfcourse_favorites_path(@golfcourse), method: :delete do %>
-      ♥<%= @golfcourse.favorites.count %> いいね
-    <% end %>
-  </p>
-  <% else %>
-  <p>
-    <%= link_to golfcourse_favorites_path(@golfcourse), method: :post do %>
-      ♡<%= @golfcourse.favorites.count %> いいね
-    <% end %>
-  </p>
-<% end %>
-
-<div>
-  <p>コメント件数：<%= @golfcourse.post_comments.count %></p>
-  <% @golfcourse.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", golfcourse_post_comment_path(post_comment.golfcourse, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@golfcourse, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-<p>投稿日：<%= @golfcourse.created_at.strftime('%Y/%m/%d') %></p>
-<% if @golfcourse.user == current_user %>
-  <%= link_to "編集", edit_golfcourse_path(@golfcourse.id) %>
-<% end %>
-<% if @golfcourse.user == current_user %>
-  <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
+      <div>
+        <p>コメント件数：<%= @golfcourse.post_comments.count %></p>
+        <% @golfcourse.post_comments.each do |post_comment| %>
+          <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+          <%= post_comment.user.name %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", golfcourse_post_comment_path(post_comment.golfcourse, post_comment), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@golfcourse, @post_comment] do |f| %>
+          <%= f.text_area :comment, class:"form-control", rows:"3", placeholder:"コメントここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+      <p>投稿日：<%= @golfcourse.created_at.strftime('%Y/%m/%d') %></p>
+      <% if @golfcourse.user == current_user %>
+        <%= link_to "編集", edit_golfcourse_path(@golfcourse.id),class:"btn btn-sm btn-success" %>
+      <% end %>
+      <% if @golfcourse.user == current_user %>
+        <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn btn-sm btn-danger" %>
+      <% end %>
