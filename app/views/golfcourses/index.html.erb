@@ -24,9 +24,23 @@
             <%= link_to golfcourse.user,class:"text-dark" do %>
               <i class="fas fa-user"></i><%= golfcourse.user.name %>
             <% end %>
-            </span>
+          </span>
              ｜
           <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+          <span>
+            <% if golfcourse.favorited_by?(current_user) %>
+              <p>
+                <%= link_to golfcourse_favorites_path(golfcourse), method: :delete do %>
+                  ♥<%= golfcourse.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% else %>
+              <p>
+                <%= link_to golfcourse_favorites_path(golfcourse), method: :post do %>
+                  ♡<%= golfcourse.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% end %>
           </span>
         </div>
       </div>

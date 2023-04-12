@@ -4,14 +4,14 @@ class FavoritesController < ApplicationController
     golfcourse = Golfcourse.find(params[:golfcourse_id])
     favorite = current_user.favorites.new(golfcourse_id: golfcourse.id)
     favorite.save
-    redirect_to golfcourse_path(golfcourse)
+    redirect_to golfcourses_path(golfcourse)
   end
 
   def destroy
     golfcourse = Golfcourse.find(params[:golfcourse_id])
     favorite = current_user.favorites.find_by(golfcourse_id: golfcourse.id)
     favorite.destroy
-    redirect_to golfcourse_path(golfcourse)
+    redirect_to golfcourses_path(golfcourse)
   end
 
 end
