@@ -6,16 +6,24 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
+          <td>
+            <%= link_to user,class:"text-dark" do %>
+              <%= user.name %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがGolfcourseの時) -->
+    <!-- 検索対象モデルがGolfcourseの時 -->
     <tbody>
       <% @golfcourses.each do |golfcourse| %>
         <tr>
-          <td><%= golfcourse.title %></td>
+          <td>
+            <%= link_to(golfcourse_path(golfcourse.id), class:"text-dark") do %>
+              <%= golfcourse.title %>
+            <% end %>
+          </td>
           <td><%= golfcourse.body %></td>
         </tr>
       <% end %>
