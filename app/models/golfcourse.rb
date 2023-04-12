@@ -20,4 +20,18 @@ class Golfcourse < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @golfcourse = Golfcourse.where("title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @golfcourse = Golfcourse.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @golfcourse = Golfcourse.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @golfcourse = Golfcourse.where("title LIKE?","%#{word}%")
+    else
+      @golfcourse = Golfcourse.all
+    end
+  end
+
 end
