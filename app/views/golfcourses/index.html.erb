@@ -30,14 +30,14 @@
           <span>
             <% if golfcourse.favorited_by?(current_user) %>
               <p>
-                <%= link_to golfcourse_favorites_path(golfcourse), method: :delete do %>
-                  ♥<%= golfcourse.favorites.count %> いいね
+                <%= link_to golfcourse_favorites_path(golfcourse), method: :delete, class:"text-dark" do %>
+                  ♥<%= golfcourse.favorites.count %>
                 <% end %>
               </p>
             <% else %>
               <p>
-                <%= link_to golfcourse_favorites_path(golfcourse), method: :post do %>
-                  ♡<%= golfcourse.favorites.count %> いいね
+                <%= link_to golfcourse_favorites_path(golfcourse), method: :post, class:"text-dark" do %>
+                  ♡<%= golfcourse.favorites.count %>
                 <% end %>
               </p>
             <% end %>
