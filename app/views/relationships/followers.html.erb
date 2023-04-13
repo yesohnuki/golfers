@@ -1,11 +1,11 @@
-<h2>Follower User</h2>
+<h2>フォロー中</h2>
 <% if @users.exists? %>
 
     <table class='table table-hover table-inverse'>
       <thead>
         <tr>
-          <th>image</th>
-          <th>name</th>
+          <th>プロフィール画像</th>
+          <th>ユーザーネーム</th>
           <th></th>
         </tr>
       </thead>
@@ -14,8 +14,8 @@
       <tr>
         <td><%= image_tag user.get_profile_image(100,100) %></td>
         <td><%= user.name %></td>
-        <td>フォロー数：<%= user.followings.count %></td>
-        <td>フォロワー数：<%= user.followers.count %></td>
+        <td>フォロー中：<%= user.followings.count %></td>
+        <td>フォロワー：<%= user.followers.count %></td>
         <td><%= link_to '詳細', user %></td>
       </tr>
     <% end %>
@@ -24,16 +24,3 @@
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
-
-
-
-
-<div class="list-group">
-  <button type="button" class="list-group-item list-group-item-action active">
-    Cras justo odio
-  </button>
-  <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-  <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-  <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-  <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
-</div>
