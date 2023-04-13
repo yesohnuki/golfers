@@ -22,9 +22,14 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= render 'searches/search' %>
-            </li>
+
+            <a class="mr-3 mt-2" href="#" data-toggle="modal" data-target="#testModal">
+              <i class="fas fa-search"></i>
+            </a>
+
+            <!--<li class="nav-item">
+              <%#= render 'searches/search' %>
+            </li>-->
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
@@ -53,6 +58,16 @@
         </div>
       </nav>
     </header>
+    <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" class="btn btn-default" data-dismiss="modal">✖️</button>
+              <%= render 'searches/search' %>
+            </div>
+          </div>
+      </div>
+    </div>
     <main class="mb-auto">
     <%= yield %>
     </main>

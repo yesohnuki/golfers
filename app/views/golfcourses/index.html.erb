@@ -25,17 +25,7 @@
               <i class="fas fa-user"></i><%= golfcourse.user.name %>
             <% end %> ｜
           </span>
-          <span>
-            <% if golfcourse.favorited_by?(current_user) %>
-                <%= link_to golfcourse_favorites_path(golfcourse), method: :delete, class:"text-dark" do %>
-                  <i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %>
-                <% end %>
-            <% else %>
-                <%= link_to golfcourse_favorites_path(golfcourse), method: :post, class:"text-dark" do %>
-                  ♡<%= golfcourse.favorites.count %>
-                <% end %>
-            <% end %>
-          </span>
+          <span><i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %></span>
           <span> ｜ <%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
         </div>
       </div>
