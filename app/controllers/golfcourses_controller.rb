@@ -41,7 +41,7 @@ class GolfcoursesController < ApplicationController
     redirect_to '/golfcourses'  # 投稿一覧画面へリダイレクト
   end
 
-  private
+private
   # ストロングパラメータ
   def golfcourse_params
     params.require(:golfcourse).permit(:title, :body, :image)

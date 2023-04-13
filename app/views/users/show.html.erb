@@ -60,7 +60,8 @@
           </p>
           <p class="card-text"><%= golfcourse.body %></p>
           <span><i class="fas fa-user"></i><%= golfcourse.user.name %> ｜ </span>
-          <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+          <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %> ｜ </span>
+          <span><i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %></span>
         </div>
       </div>
     </div>

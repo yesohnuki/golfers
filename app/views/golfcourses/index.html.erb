@@ -8,7 +8,7 @@
     <%= link_to golfcourse_path(golfcourse.id) do %>
       <%= image_tag golfcourse.get_image, class:"card-img-top"; %>
     <% end %>
-    <div class="card-body">
+    <div class="card-body　#CCFFCC">
       <div class="row">
         <div class="col-2">
           <%= image_tag golfcourse.user.get_profile_image(100,100) %>
@@ -26,22 +26,23 @@
             <% end %>
           </span>
              ｜
-          <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
           <span>
             <% if golfcourse.favorited_by?(current_user) %>
-              <p>
+
                 <%= link_to golfcourse_favorites_path(golfcourse), method: :delete, class:"text-dark" do %>
-                  <i class="fas fa-heart"></i><%= golfcourse.favorites.count %>
+                  <i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %>
                 <% end %>
-              </p>
+
             <% else %>
-              <p>
+
                 <%= link_to golfcourse_favorites_path(golfcourse), method: :post, class:"text-dark" do %>
                   ♡<%= golfcourse.favorites.count %>
                 <% end %>
-              </p>
+
             <% end %>
           </span>
+             ｜
+          <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
         </div>
       </div>
     </div>
