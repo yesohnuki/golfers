@@ -2,16 +2,16 @@
   <%= flash[:notice] %>
 </div>
 
-<div class="card-golfcourse-container py-5">
+<div class="card-list-container py-5">
   <% @golfcourses.each do |golfcourse| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= link_to golfcourse_path(golfcourse.id) do %>
       <%= image_tag golfcourse.get_image, class:"card-img-top"; %>
     <% end %>
-    <div class="card-body　#CCFFCC">
+    <div class="card-body">
       <div class="row">
         <div class="col-2">
-          <%= image_tag golfcourse.user.get_profile_image(100,100) %>
+          <%= image_tag golfcourse.user.get_profile_image(100,100), class: 'img-fluid' %>
         </div>
         <div class="col-10">
           <p class="card-title">
@@ -23,26 +23,20 @@
           <span>
             <%= link_to golfcourse.user,class:"text-dark" do %>
               <i class="fas fa-user"></i><%= golfcourse.user.name %>
-            <% end %>
+            <% end %> ｜
           </span>
-             ｜
           <span>
             <% if golfcourse.favorited_by?(current_user) %>
-
                 <%= link_to golfcourse_favorites_path(golfcourse), method: :delete, class:"text-dark" do %>
                   <i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %>
                 <% end %>
-
             <% else %>
-
                 <%= link_to golfcourse_favorites_path(golfcourse), method: :post, class:"text-dark" do %>
                   ♡<%= golfcourse.favorites.count %>
                 <% end %>
-
             <% end %>
           </span>
-             ｜
-          <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+          <span> ｜ <%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
         </div>
       </div>
     </div>
@@ -50,4 +44,3 @@
   <% end %>
   <%#= paginate @golfcourse %>
 </div>
-
