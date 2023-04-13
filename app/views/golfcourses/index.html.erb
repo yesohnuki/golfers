@@ -31,7 +31,7 @@
             <% if golfcourse.favorited_by?(current_user) %>
               <p>
                 <%= link_to golfcourse_favorites_path(golfcourse), method: :delete, class:"text-dark" do %>
-                  ♥<%= golfcourse.favorites.count %>
+                  <i class="fas fa-heart"></i><%= golfcourse.favorites.count %>
                 <% end %>
               </p>
             <% else %>
