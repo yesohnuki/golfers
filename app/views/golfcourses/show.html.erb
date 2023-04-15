@@ -18,23 +18,8 @@
         <div class="card-body">
           <div class="card-text">
             <p><%= @golfcourse.body %></p>
-            <div  class="card-body">
-              <% @golfcourse.post_comments.each do |post_comment| %>
-                <div class="mb-3">
-                  <%= link_to user_path(post_comment.user.id),class:"text-dark" do %>
-                  <strong>
-                    <%= post_comment.user.name %>
-                  </strong>
-                  <% end %>
-                  <%= simple_format(post_comment.comment) %>
-                  <div class="text-right">
-                    <% if post_comment.user == current_user %>
-                      <%= link_to "削除", golfcourse_post_comment_path(post_comment.golfcourse, post_comment), method: :delete,class:"btn btn-sm btn-danger" %>
-                    <% end %>
-                    <small class="text-black-50"><%= post_comment.created_at.strftime('%Y/%m/%d') %></small>
-                  </div>
-                </div>
-              <% end %>
+            <div id="comments-area" class="card-body">
+              <%= render "post_comments/comment", golfcourse: @golfcourse %>
             </div>
             <% if @post_comment.errors.any? %>
               <div class = "alert">
@@ -46,7 +31,7 @@
               </div>
             <% end %>
             <div class="card-body">
-              <%= form_with model: [@golfcourse, @post_comment] do |f| %>
+              <%= form_with model: [@golfcourse, @post_comment],local:false do |f| %>
                 <%= f.text_area :comment, class:"form-control", rows:"3", placeholder:"コメント..." %>
                 <%= f.submit "送信", class: "btn btn-sm btn-info"%>
               <% end %>
@@ -59,7 +44,7 @@
                 <%= link_to "編集", edit_golfcourse_path(@golfcourse.id),class:"btn btn-sm btn-success" %>
               <% end %>
               <% if @golfcourse.user == current_user %>
-                <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn btn-sm btn-danger" %>
+                <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn btn-sm btn-danger" ,remote: true %>
               <% end %>
             </div>
           </div>

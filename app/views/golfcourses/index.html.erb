@@ -4,33 +4,44 @@
 
 <div class="card-list-container py-5">
   <% @golfcourses.each do |golfcourse| %>
-  <div class="card w-50 mx-auto mt-4 shadow-lg">
-    <%= link_to golfcourse_path(golfcourse.id) do %>
-      <%= image_tag golfcourse.get_image, class:"card-img-top"; %>
-    <% end %>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-2">
-          <%= image_tag golfcourse.user.get_profile_image(100,100), class: 'img-fluid' %>
-        </div>
-        <div class="col-10">
-          <p class="card-title">
-            <%= link_to(golfcourse_path(golfcourse.id), class:"text-dark") do %>
-              <strong><i class="far fa-flag"></i><span> <%= golfcourse.title %></span></strong>
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <%= link_to golfcourse_path(golfcourse.id) do %>
+        <%= image_tag golfcourse.get_image, class:"card-img-top"; %>
+      <% end %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2">
+            <%= image_tag golfcourse.user.get_profile_image(100,100), class: 'img-fluid' %>
+          </div>
+          <div class="col-10">
+            <p class="card-title">
+              <%= link_to(golfcourse_path(golfcourse.id), class:"text-dark") do %>
+                <strong><i class="far fa-flag"></i><span> <%= golfcourse.title %></span></strong>
+              <% end %>
+            </p>
+            <p class="card-text"><%= golfcourse.body %></p>
+            <span>
+              <%= link_to golfcourse.user,class:"text-dark" do %>
+                <i class="fas fa-user"></i><%= golfcourse.user.name %>
+              <% end %> ｜
+            </span>
+
+            <% if @golfcourse.favorited_by?(current_user) %>
+              <%= link_to golfcourse_favorites_path(@golfcourse.id), method: :delete, class:"text-dark", remote: true do %>
+                <i class="fas fa-heart text-danger"></i><%= @golfcourse.favorites.count %>
+              <% end %>
+              <% else %>
+              <%= link_to golfcourse_favorites_path(@golfcourse.id), method: :post, class:"text-dark", remote: true do %>
+                <i class="far fa-heart"></i><%= @golfcourse.favorites.count %>
+              <% end %>
             <% end %>
-          </p>
-          <p class="card-text"><%= golfcourse.body %></p>
-          <span>
-            <%= link_to golfcourse.user,class:"text-dark" do %>
-              <i class="fas fa-user"></i><%= golfcourse.user.name %>
-            <% end %> ｜
-          </span>
-          <span><i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %> ｜ </span>
-          <span><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+            <span><i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %> ｜ </span>
+
+            <span><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <% end %>
   <%#= paginate @golfcourse %>
 </div>
