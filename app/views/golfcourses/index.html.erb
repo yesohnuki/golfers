@@ -25,8 +25,8 @@
               <i class="fas fa-user"></i><%= golfcourse.user.name %>
             <% end %> ｜
           </span>
-          <span><i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %></span>
-          <span> ｜ <%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+          <span><i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %> ｜ </span>
+          <span><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
         </div>
       </div>
     </div>

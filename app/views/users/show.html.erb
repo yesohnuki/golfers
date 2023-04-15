@@ -2,7 +2,7 @@
 
 <div class="row no-gutters">
   <div class="col-md-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-    <h5 class="text-dark bg-light p-4 mb-0"><%= @user.name %></h5>
+    <h5 class="text-dark bg-light p-4 mb-0"><strong><%= @user.name %></strong></h5>
     <div class="form-body p-4">
       <div class="row">
         <div class="col-sm-3">
@@ -61,7 +61,7 @@
           <p class="card-text"><%= golfcourse.body %></p>
           <span><i class="fas fa-user"></i><%= golfcourse.user.name %> ｜ </span>
           <span><i class="fas fa-heart text-danger"></i><%= golfcourse.favorites.count %> ｜ </span>
-          <span><%= link_to "#{golfcourse.post_comments.count} コメント", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+          <span><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
         </div>
       </div>
     </div>
