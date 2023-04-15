@@ -10,16 +10,13 @@
           <% end %>
         </span>
           <%= image_tag @golfcourse.get_image, class: 'img-fluid' %>
+
         <span>
-          <% if @golfcourse.favorited_by?(current_user) %>
-            <%= link_to golfcourse_favorites_path(@golfcourse), method: :delete, class:"text-dark" do %>
-              <i class="fas fa-heart text-danger"></i>
-            <% end %>
-          <% else %>
-            <%= link_to golfcourse_favorites_path(@golfcourse), method: :post, class:"text-dark" do %>
-              <i class="far fa-heart"></i
-            <% end %>
-          <% end %>
+          <div id="favorite_buttons_<%= @golfcourse.id %>">
+            <%#= render "favorites/favorites", golfcourse: @golfcourse %>
+            <%= render "favorites/favorites" %>
+          </div>
+
         </span>
         <div class="card-body">
           <div class="card-text">

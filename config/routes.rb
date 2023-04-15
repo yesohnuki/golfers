@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :golfcourses, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
-    resources :post_comments, only: [:index,:create, :destroy]
+    resources :post_comments, only: [:create, :destroy]
   end
 
   resources :users , only: [:show, :edit, :update] do
