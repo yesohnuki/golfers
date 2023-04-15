@@ -10,13 +10,10 @@
           <% end %>
         </span>
           <%= image_tag @golfcourse.get_image, class: 'img-fluid' %>
-
         <span>
           <div id="favorite_buttons_<%= @golfcourse.id %>">
-            <%#= render "favorites/favorites", golfcourse: @golfcourse %>
             <%= render "favorites/favorites" %>
           </div>
-
         </span>
         <div class="card-body">
           <div class="card-text">
@@ -24,9 +21,11 @@
             <div  class="card-body">
               <% @golfcourse.post_comments.each do |post_comment| %>
                 <div class="mb-3">
+                  <%= link_to user_path(post_comment.user.id),class:"text-dark" do %>
                   <strong>
                     <%= post_comment.user.name %>
                   </strong>
+                  <% end %>
                   <%= simple_format(post_comment.comment) %>
                   <div class="text-right">
                     <% if post_comment.user == current_user %>
@@ -37,6 +36,15 @@
                 </div>
               <% end %>
             </div>
+            <% if @post_comment.errors.any? %>
+              <div class = "alert">
+                <ul>
+                  <% @post_comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
             <div class="card-body">
               <%= form_with model: [@golfcourse, @post_comment] do |f| %>
                 <%= f.text_area :comment, class:"form-control", rows:"3", placeholder:"コメント..." %>
