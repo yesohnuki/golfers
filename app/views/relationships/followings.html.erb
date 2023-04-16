@@ -1,26 +1,25 @@
 <h2>フォロワー</h2>
 <% if @users.exists? %>
-
-    <table class='table table-hover table-inverse'>
-      <thead>
-        <tr>
-          <th>プロフィール画像</th>
-          <th>ユーザーネーム</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
+  <table class='table table-hover table-inverse'>
+    <thead>
       <tr>
-        <td><%= image_tag user.get_profile_image(100,100) %></td>
-        <td><%= user.name %></td>
-        <td>フォロー中：<%= user.followings.count %></td>
-        <td>フォロワー：<%= user.followers.count %></td>
-        <td><%= link_to '詳細', user %></td>
+        <th>プロフィール画像</th>
+        <th>ユーザーネーム</th>
+        <th></th>
       </tr>
-    <% end %>
-      </tbody>
-    </table>
-<% else %>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+    <tr>
+      <td><%= image_tag user.get_profile_image(100,100) %></td>
+      <td><%= user.name %></td>
+      <td>フォロー中：<%= user.followings.count %></td>
+      <td>フォロワー：<%= user.followers.count %></td>
+      <td><%= link_to '詳細', user %></td>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
+  <% else %>
   <p>ユーザーはいません</p>
 <% end %>

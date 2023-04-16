@@ -8,6 +8,21 @@
         <div class="col-sm-3">
           <%= image_tag @user.get_profile_image(100,100) %>
         </div>
+              <!-- DM機能 -->
+        <div>
+          <% unless @user.id == current_user.id %>
+              <%= form_for @message do |f| %>
+                <div>
+                  <%= f.text_area :body %>
+                </div>
+                <div>
+                  <%= f.hidden_field :receiver_id, :value => @user.id %>
+                  <%= f.submit "送信する" %>
+                </div>
+            <% end %>
+          <% end %>
+        </div>
+
         <div class="col-sm-3">
           フォロー数：
           <%= link_to user_followings_path(user_id: @user.id) do %>
