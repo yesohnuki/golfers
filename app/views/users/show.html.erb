@@ -8,21 +8,6 @@
         <div class="col-sm-3">
           <%= image_tag @user.get_profile_image(100,100) %>
         </div>
-              <!-- DM機能 -->
-        <div>
-          <% unless @user.id == current_user.id %>
-              <%= form_for @message do |f| %>
-                <div>
-                  <%= f.text_area :body %>
-                </div>
-                <div>
-                  <%= f.hidden_field :receiver_id, :value => @user.id %>
-                  <%= f.submit "送信する" %>
-                </div>
-            <% end %>
-          <% end %>
-        </div>
-
         <div class="col-sm-3">
           フォロー数：
           <%= link_to user_followings_path(user_id: @user.id) do %>
@@ -42,6 +27,29 @@
             <% else %>
               <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn btn-primary" %>
             <% end %>
+          <% end %>
+        </div>
+
+        <!-- DM機能 -->
+　　　　<div>
+          <% unless @user.id == current_user.id %>
+            <% if @is_room == true %>
+              <%= link_to 'メッセージへ', room_path(@room_id) %>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <% e.hidden_field :user_id, value: @user.id  %>
+                <% end %>
+                <%= f.button type: :submit do %>
+                  メッセージを送る
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div>
+          <% if @user == current_user %>
+            <%= link_to "my_rooms", rooms_path %>
           <% end %>
         </div>
       </div>

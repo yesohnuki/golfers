@@ -14,10 +14,9 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
-    resources :messages, only: [:index]
   end
 
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :destroy]
   resources :rooms, only: [:create, :index, :show]
 
   devise_scope :user do
