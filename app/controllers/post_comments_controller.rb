@@ -12,9 +12,10 @@ class PostCommentsController < ApplicationController
   end
 
   def destroy
-    PostComment.find(params[:id]).destroy
+    post_comment = PostComment.find(params[:id])
+    @golfcourse = Golfcourse.find(post_comment.golfcourse_id)
+    post_comment.destroy
     #redirect_to golfcourse_path(params[:golfcourse_id]) 非同期通信化
-
   end
 
   private
