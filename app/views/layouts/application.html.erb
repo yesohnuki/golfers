@@ -64,7 +64,7 @@
         </div>
     </div>
   </div>
-  <main class="mb-auto">
+  <main class="mb-auto<% if request.url.include?("about") %> main-visual<% end %>">
     <%= yield %>
   </main>
     <footer class="bg-dark text-white pt-5 pb-4">

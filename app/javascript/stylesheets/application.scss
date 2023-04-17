@@ -1,2 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+.main-visual {
+  width: 100%; /* 横幅いっぱい */
+  height: 100%; /* 高さ300px */
+  background-image: url("../imgs/25407014_l.jpg");
+}

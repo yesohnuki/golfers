@@ -6,8 +6,9 @@
           <div class="d-flex">
             <div class="chat-avatar">
               <object>
-                <%= link_to user_path(entry.user) do %>
+                <%= link_to user_path(entry.user), class:"text-dark" do %>
                   <%= image_tag entry.user.get_profile_image(80, 80) %>
+                  <%= entry.user.name %>
                 <% end %>
               </object>
             </div>
