@@ -33,19 +33,19 @@
             <div class="card-body">
               <%= form_with model: [@golfcourse, @post_comment],local:false do |f| %>
                 <%= f.text_area :comment, class:"form-control", rows:"3", placeholder:"コメント..." %>
-                <%= f.submit "送信", class: "btn btn-sm btn-info"%>
+                <%= f.submit "送信", class: "btn btn-sm btn-outline-info"%>
               <% end %>
             </div>
             <div class="card-body">
               <p>投稿日：<%= @golfcourse.created_at.strftime('%Y/%m/%d') %></p>
             </div>
             <div>
-              <% if @golfcourse.user == current_user %>
-                <%= link_to "編集", edit_golfcourse_path(@golfcourse.id),class:"btn btn-sm btn-success" %>
-              <% end %>
-              <% if @golfcourse.user == current_user %>
-                <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn btn-sm btn-danger" ,remote: true %>
-              <% end %>
+              <%# if @golfcourse.user == current_user %>
+                <%= link_to "編集", edit_golfcourse_path(@golfcourse.id),class:"btn btn-sm btn-outline-success" %>
+              <%# end %>
+              <%# if @golfcourse.user == current_user %>
+                <%= link_to "削除", golfcourse_path(@golfcourse.id), method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn btn-sm btn-outline-danger" ,remote: true %>
+              <%# end %>
             </div>
           </div>
         </div>
