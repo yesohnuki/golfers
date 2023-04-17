@@ -5,52 +5,56 @@
     <h5 class="text-dark bg-light p-4 mb-0"><strong><%= @user.name %></strong></h5>
     <div class="form-body p-4">
       <div class="row">
-        <div class="col-sm-3">
-          <%= image_tag @user.get_profile_image(100,100) %>
-        </div>
-        <div class="col-sm-3">
-          フォロー数：
-          <%= link_to user_followings_path(user_id: @user.id) do %>
-            <%= @user.followings.count %>
-          <% end %>
-        </div>
-        <div class="col-sm-3">
-          フォロワー数：
-          <%= link_to user_followers_path(user_id: @user.id) do %>
-            <%= @user.followers.count %>
-          <% end %>
-        </div>
-        <div class="col-sm-3">
-          <% unless current_user == @user %>
-            <% if current_user.following?(@user) %>
-              <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class:"btn btn-secondary" %>
-            <% else %>
-              <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn btn-primary" %>
-            <% end %>
-          <% end %>
-        </div>
-
-        <!-- DM機能 -->
-　　　　<div>
-          <% unless @user.id == current_user.id %>
-            <% if @is_room == true %>
-              <%= link_to 'メッセージ', room_path(@room_id),class:"btn btn-outline-info" %>
-            <% else %>
-              <%= form_for @room do |f| %>
-                <%= fields_for @entry do |e| %>
-                  <% e.hidden_field :user_id, value: @user.id  %>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-4">
+              <%= image_tag @user.get_profile_image(100,100) %>
+            </div>
+            <div class="col-sm-4">
+              <div class="d-block mt-3">
+                フォロー数：
+                <%= link_to user_followings_path(user_id: @user.id) do %>
+                  <%= @user.followings.count %>
                 <% end %>
-                <%= f.button type: :submit do %>
-                  新規メッセージ
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="d-block mt-3">
+                フォロワー数：
+                <%= link_to user_followers_path(user_id: @user.id) do %>
+                  <%= @user.followers.count %>
                 <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="d-inline-block">
+            <% unless current_user == @user %>
+              <% if current_user.following?(@user) %>
+                <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class:"btn btn-secondary" %>
+              <% else %>
+                <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn btn-primary" %>
               <% end %>
             <% end %>
-          <% end %>
-        </div>
-        <div>
-          <% if @user == current_user %>
-            <%= link_to "メッセージ", rooms_path,class:"btn btn-outline-info" %>
-          <% end %>
+          </div>
+          <!-- DM機能 -->
+          <div class="d-inline-block">
+            <% if @user.id != current_user.id %>
+              <% if @is_room == true %>
+                <%= link_to 'メッセージ', room_path(@room_id),class:"btn btn-outline-info" %>
+              <% else %>
+                <%= form_for @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <% e.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= f.submit "新規メッセージ",class:"btn btn-outline-info" %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to "メッセージ", rooms_path,class:"btn btn-outline-info" %>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -82,8 +86,8 @@
               <% end %>
             </p>
             <p class="card-text"><%= golfcourse.body %></p>
-            <span><i class="fas fa-user"></i><%= golfcourse.user.name %> ｜ </span>
-            <span>
+            <span class="d-inline-block"><i class="fas fa-user"></i><%= golfcourse.user.name %> ｜ </span>
+            <span class="d-inline-block">
               <div id="favorite_buttons_<%= golfcourse.id %>">
                 <% if golfcourse.favorited_by?(current_user) %>
                   <%= link_to golfcourse_favorites_path(golfcourse.id), method: :delete, class:"text-dark", remote: true do %>
@@ -96,7 +100,7 @@
                 <% end %> ｜
               </div>
             </span>
-            <span><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+            <span class="d-inline-block"><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
           </div>
         </div>
       </div>
