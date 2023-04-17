@@ -34,7 +34,7 @@
 　　　　<div>
           <% unless @user.id == current_user.id %>
             <% if @is_room == true %>
-              <%= link_to 'メッセージ', room_path(@room_id),class:"btn btn-sm btn-outline-info" %>
+              <%= link_to 'メッセージ', room_path(@room_id),class:"btn btn-outline-info" %>
             <% else %>
               <%= form_for @room do |f| %>
                 <%= fields_for @entry do |e| %>
@@ -49,7 +49,7 @@
         </div>
         <div>
           <% if @user == current_user %>
-            <%= link_to "メッセージ", rooms_path,class:"btn btn-sm btn-outline-info" %>
+            <%= link_to "メッセージ", rooms_path,class:"btn btn-outline-info" %>
           <% end %>
         </div>
       </div>
