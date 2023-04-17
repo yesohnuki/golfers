@@ -1,18 +1,17 @@
-<div class="card-container">
-  <div class="row">
-    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-      <h1>welcome to <strong>GOLFERS</strong><i class="fas fa-flag"></i></h1>
-      <div class="btn-wrapper col-10 mx-auto">
-        <div class="row">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-        </div>
-        <div class="row">
-          <%= link_to "新規登録", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
-        </div>
-        <div>
-          <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn btn-Secondary btn-sm btn-block sign_up" %>
-        </div>
-      </div>
+<div class="card-container font-italic">
+  <h1 class="display-3">welcome to <strong>GOLFERS</strong></h1>
+</div>
+<p></p></br>
+<div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
+  <div class="btn-wrapper col-10 mx-auto">
+    <div class="row">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+    </div>
+    <div class="row">
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+    </div>
+    <div class="row">
+      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn btn-Secondary btn-sm btn-block mb-3" %>
     </div>
   </div>
 </div>
