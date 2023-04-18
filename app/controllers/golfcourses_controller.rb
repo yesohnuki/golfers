@@ -18,7 +18,6 @@ class GolfcoursesController < ApplicationController
 
   def index
     @golfcourses = Golfcourse.page(params[:page])
-    # byebug
     @golfcourses = Golfcourse.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size} #ランキング
   end
 
