@@ -17,8 +17,9 @@ class GolfcoursesController < ApplicationController
   end
 
   def index
-    @golfcourses = Golfcourse.page(params[:page])
+    # @golfcourses = Golfcourse.page(params[:page]).per(8)
     @golfcourses = Golfcourse.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size} #ランキング
+    @golfcourses = Kaminari.paginate_array(@golfcourses).page(params[:page]).per(5)
   end
 
   def show
