@@ -20,12 +20,12 @@
               <% end %>
             </p>
             <p class="card-text"><%= golfcourse.body %></p>
-            <span>
+            <span class="d-inline-block">
               <%= link_to golfcourse.user,class:"text-dark" do %>
                 <i class="fas fa-user"></i><%= golfcourse.user.name %>
               <% end %> ｜
             </span>
-            <span>
+            <span class="d-inline-block">
               <div id="favorite_buttons_<%= golfcourse.id %>">
               <% if golfcourse.favorited_by?(current_user) %>
                 <%= link_to golfcourse_favorites_path(golfcourse.id), method: :delete, class:"text-dark", remote: true do %>
@@ -38,7 +38,7 @@
               <% end %> ｜
               </div>
             </span>
-            <span><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
+            <span class="d-inline-block"><i class="fas fa-comment"></i><%= link_to "#{golfcourse.post_comments.count}", golfcourse_path(golfcourse.id), class:"text-dark" %></span>
           </div>
         </div>
       </div>

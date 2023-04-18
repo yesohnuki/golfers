@@ -12,7 +12,7 @@
             </div>
             <div class="col-sm-4">
               <div class="d-block mt-3">
-                フォロー数：
+                フォロー：
                 <%= link_to user_followings_path(user_id: @user.id) do %>
                   <%= @user.followings.count %>
                 <% end %>
@@ -20,7 +20,7 @@
             </div>
             <div class="col-sm-4">
               <div class="d-block mt-3">
-                フォロワー数：
+                フォロワー：
                 <%= link_to user_followers_path(user_id: @user.id) do %>
                   <%= @user.followers.count %>
                 <% end %>
@@ -32,9 +32,9 @@
           <div class="d-inline-block">
             <% unless current_user == @user %>
               <% if current_user.following?(@user) %>
-                <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class:"btn btn-secondary" %>
+                <%= link_to "フォロー中", user_relationships_path(@user.id), method: :delete, class:"btn btn-secondary" %>
               <% else %>
-                <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn btn-primary" %>
+                <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class:"btn btn-primary" %>
               <% end %>
             <% end %>
           </div>
