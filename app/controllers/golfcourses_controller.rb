@@ -3,8 +3,6 @@ class GolfcoursesController < ApplicationController
     @golfcourse = Golfcourse.new
   end
 
-
-
   def create
     @golfcourse = Golfcourse.new(golfcourse_params)
     @golfcourse.user_id = current_user.id
@@ -17,13 +15,13 @@ class GolfcoursesController < ApplicationController
   end
 
   def index
-    # @golfcourses = Golfcourse.page(params[:page]).per(8)
     @golfcourses = Golfcourse.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size} #ランキング
     @golfcourses = Kaminari.paginate_array(@golfcourses).page(params[:page]).per(5)
   end
 
   def show
     @golfcourse = Golfcourse.find(params[:id])
+    # byebug
     @post_comment = PostComment.new(golfcourse_id: @golfcourse.id)
   end
 
@@ -46,6 +44,6 @@ class GolfcoursesController < ApplicationController
 private
   # ストロングパラメータ
   def golfcourse_params
-    params.require(:golfcourse).permit(:title, :body, :image)
+    params.require(:golfcourse).permit(:title, :body, :image, :address, :latitude, :longitude)
   end
 end

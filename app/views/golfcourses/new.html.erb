@@ -21,7 +21,11 @@
             </div>
             <%= f.text_field :title, class:"form-control", placeholder:"ゴルフ場名" %>
           </div>
-          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"コメントここに" %>
+          <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"ゴルフ場について" %>
+          <div class="form-group">
+            <%= f.label :address, '場所' %>
+            <%= f.text_field :address, placeholder:"◯◯県♢♢市△△町□□-□□", class: 'form-control' %>
+          </div>
           <hr>
           <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
         <% end %>
