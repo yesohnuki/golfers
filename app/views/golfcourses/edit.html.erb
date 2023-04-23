@@ -4,12 +4,22 @@
       <h5 class="text-dark bg-light p-4 mb-0"><strong>ゴルフ場編集</strong></h5>
       <div class="form-body p-4">
       <%= form_with model: @golfcourse do |f| %>
-        <h6 class="card-subtitle mb-2 text-muted">ゴルフ場</h6>
-        <p class="card-text"><%= f.text_field :title %></p>
-        <h6 class="card-subtitle mb-2 text-muted">説明</h6>
-        <p class="card-text"><%= f.text_field :body %></p>
-        <%= f.submit '変更を保存',class:"btn btn-sm btn-success btn-block mt-2" %>
-      <% end %>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" aria-hidden="true"><i class="far fa-flag"></i></span>
+          </div>
+          <%= f.text_field :title, class:"form-control", placeholder:"ゴルフ場名" %>
+        </div>
+        <div class="input-group mb-3 mt-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span>
+          </div>
+          <%= f.text_field :address, class:"form-control", placeholder:"住所" %>
+        </div>
+        <%= f.text_area :body, class:"form-control", rows:"3", placeholder:"ゴルフ場について" %>
+          <hr>
+          <%= f.submit '変更を保存', class:"btn btn-lg btn-block btn-success mt-4" %>
+        <% end %>
       </div>
     </div>
   </div>
