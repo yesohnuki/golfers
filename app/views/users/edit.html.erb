@@ -8,9 +8,9 @@
             <h6 class="mb-2 text-muted">プロフィール画像</h6>
             <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*", class: "w-100" %>
           </div>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="far fa-flag"></i></span>
+              <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
             </div>
             <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前", class:"form-control" %>
           </div>
