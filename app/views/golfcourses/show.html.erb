@@ -51,6 +51,10 @@
                   center: {lat: <%= @golfcourse.latitude %>, lng: <%= @golfcourse.longitude %> },
                   zoom: 15
                   });
+                  let marker = new google.maps.Marker({
+                    position: {lat: <%= @golfcourse.latitude %>, lng: <%= @golfcourse.longitude %> },
+                    map: map,
+                  });
                 }
               </script>
               <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAP'] %>&callback=initMap" async defer></script>
