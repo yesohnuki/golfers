@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 2023_04_22_105259) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
+    t.integer "user_id"
+    t.integer "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
