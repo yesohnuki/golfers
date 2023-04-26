@@ -4,7 +4,7 @@
       <h5 class="text-dark bg-light p-4 mb-0"><strong><%= @golfcourse.title %></strong></h5>
       <div class="form-body p-4">
         <span>
-          <%= image_tag @golfcourse.user.get_profile_image(100,100) %>
+          <%= image_tag @golfcourse.user.get_profile_image(100,100), class: 'img-fluid rounded-circle' %>
           <%= link_to @golfcourse.user,class:"text-dark" do %>
             <strong><%= @golfcourse.user.name %></strong>
           <% end %>
@@ -48,11 +48,11 @@
               <script type="text/javascript">
                 function initMap(){
                   let map = new google.maps.Map(document.getElementById('map'), {
-                  center: {lat: <%= @golfcourse.latitude %>, lng: <%= @golfcourse.longitude %> },
+                  center: {lat: <%= @golfcourse.latitude ||= 0 %>, lng: <%= @golfcourse.longitude ||= 0 %> },
                   zoom: 15
                   });
                   let marker = new google.maps.Marker({
-                    position: {lat: <%= @golfcourse.latitude %>, lng: <%= @golfcourse.longitude %> },
+                    position: {lat: <%= @golfcourse.latitude ||= 0 %>, lng: <%= @golfcourse.longitude ||= 0 %> },
                     map: map,
                   });
                 }
